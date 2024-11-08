@@ -5,4 +5,3 @@ streamlit
 tqdm
 weasyprint
 markdown2
-libpango-1.0-0
