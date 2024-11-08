@@ -1,0 +1,7 @@
+anthropic
+python-dotenv
+datetime
+streamlit
+tqdm
+weasyprint
+markdown2
