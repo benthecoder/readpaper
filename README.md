@@ -41,11 +41,6 @@ Traditional paper analysis is time-consuming and can miss critical details. This
 - Prompt Caching for Efficiency
 - Markdown-based Output
 
-I'll help you add installation and setup instructions to the README. I'll reference the existing requirements and code structure from the provided files.
-
-Here's the additional content to add to the README:
-
-````markdown
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -61,7 +56,6 @@ Here's the additional content to add to the README:
 git clone https://github.com/benthecoder/readpaper.git
 cd readpaper
 ```
-````
 
 2. Create and activate virtual environment with uv:
 
