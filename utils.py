@@ -56,6 +56,7 @@ def create_markdown_pdf(summary):
     html_content = f"""
         <html>
             <head>
+                <meta charset="UTF-8">
                 <style>{css}</style>
             </head>
             <body>
