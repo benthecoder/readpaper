@@ -107,7 +107,7 @@ The summary will be saved in `paper_summaries/` directory.
 
 ### Sample Output
 
-Check out [`sample_summary/word2vec.pdf`](sample_summary/word2vec.pdf) for an example of the generated analysis format.
+Check out [`sample_summary/attention.pdf`](sample_summary/attention.pdf) for an example of the generated analysis format.
 
 ## 📝 Output Structure
 
