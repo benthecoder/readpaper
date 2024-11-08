@@ -19,7 +19,7 @@ def create_markdown_pdf(summary):
     # Enhanced CSS with smaller margins and better list formatting
     css = """
         body { 
-            font-family: Arial, sans-serif; 
+            font-family: "Arial", "Microsoft YaHei", "SimSun", "SimHei", sans-serif; 
             margin: 1cm;
             line-height: 1.4; 
         }
