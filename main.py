@@ -42,11 +42,18 @@ class Sumrize:
         with open(pdf_path, "rb") as pdf_file:
             return base64.b64encode(pdf_file.read()).decode("utf-8")
 
-    def summarize_section(self, pdf_base64, section):
+    def summarize_section(self, pdf_base64, section, previous_summaries=""):
         """Generate summary for a specific section."""
         # Get prompts
         system_context = ResearchPrompts.get_system_context()
         prompt = ResearchPrompts.get_prompt(section)
+
+        # Add previous summaries context if provided
+        if previous_summaries:
+            prompt = f"""Previous section summaries:
+        {previous_summaries}
+
+        Using the context above, {prompt}"""
 
         # Ensure prompt is not empty
         if not prompt:
@@ -147,15 +154,9 @@ class Sumrize:
         for section in pbar:
             pbar.set_description(f"Processing {section}")
             try:
-                # Add previous summaries as context
-                section_prompt = ResearchPrompts.get_prompt(section)
-                if previous_summaries:
-                    section_prompt = f"""Previous section summaries:
-    {previous_summaries}
-
-    Using the context above, {section_prompt}"""
-
-                section_summary = self.summarize_section(pdf_base64, section_prompt)
+                section_summary = self.summarize_section(
+                    pdf_base64, section, previous_summaries=previous_summaries
+                )
                 if section_summary:
                     summary_parts.append(section_summary)
                     # Update context for next section
