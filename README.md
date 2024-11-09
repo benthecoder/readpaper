@@ -42,7 +42,7 @@ readpaper leverages Claude 3.5's advanced capabilities to deliver comprehensive 
 
 ## Sample Output
 
-Check out [`sample_summary/attention.pdf`](sample_summary/attention.pdf) for an example of the generated analysis format.
+Check out sample summaries for [BERT](sample_summary/bert_summary.pdf) and the [attention](sample_summary/attention_summary.pdf) paper
 
 ## 🚀 Getting Started
 
