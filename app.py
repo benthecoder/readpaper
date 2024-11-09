@@ -3,11 +3,22 @@ from pathlib import Path
 import tempfile
 from main import Sumrize
 from utils import create_markdown_pdf
+import json
+from pathlib import Path
+
+
+def load_sample_summary(filename):
+    sample_path = Path("sample_summary") / f"{filename}_summary.md"
+    try:
+        with open(sample_path, "r") as f:
+            return f.read()
+    except Exception as e:
+        return f"Error loading sample summary: {str(e)}"
 
 
 st.set_page_config(page_title="readpaper", page_icon="📄")
 
-st.title("readpaper")
+st.title("ReadPaper")
 
 # Initialize session state for storing the summary and current file name
 if "summary" not in st.session_state:
@@ -61,29 +72,58 @@ if uploaded_file:
 
 else:
     st.info(
-        "Please upload a PDF file and specify the research field to begin analysis."
+        "Please upload a PDF file to begin analysis. Or explore sample summaries below 👇"
     )
 
+    tab1, tab2 = st.tabs(["BERT", "Attention Is All You Need"])
+
+    with tab1:
+        with st.expander(
+            "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+            expanded=True,
+        ):
+            bert_summary = load_sample_summary("bert")
+            st.markdown(bert_summary)
+            # Add citation
+            st.markdown(
+                """
+            ---
+            📄 [Original Paper](https://arxiv.org/abs/1810.04805) by Devlin et al. (2018)
+            """
+            )
+
+    with tab2:
+        with st.expander("Attention Is All You Need", expanded=True):
+            attention_summary = load_sample_summary("attention")
+            st.markdown(attention_summary)
+            # Add citation
+            st.markdown(
+                """
+            ---
+            📄 [Original Paper](https://arxiv.org/abs/1706.03762) by Vaswani et al. (2017)
+            """
+            )
+
 with st.sidebar:
-    st.header("ReadPaper 📚")
+    st.header("📚 ReadPaper")
+
     st.markdown(
         """
-    AI-powered research paper analyzer that generates comprehensive summaries.
-    
-    ### Summary Structure
-    - Problem Statement & Significance
-    - Conceptual Innovation
-    - Technical Architecture
-    - Mathematical Foundation
-    - Critical Analysis & Future Work
-    
-    ---
-    Powered by [Claude 3.5 Sonnet](https://www.anthropic.com/claude)
-    
-    [View on GitHub](https://github.com/benthecoder/readpaper)
-    
-    Built by [Benedict Neo](https://www.linkedin.com/in/benedictneo/)
+        A better paper summary powered by [Claude 3.5 Sonnet](https://www.anthropic.com/claude)
+        
+        #### 📋 Summary Structure
+        • Problem Statement & Significance  
+        • Conceptual Innovation  
+        • Technical Architecture  
+        • Mathematical Foundation  
+        • Critical Analysis & Future Work
+        
+        ---
+                
+        [![GitHub](https://img.shields.io/badge/GitHub-View_Project-gray?logo=github)](https://github.com/benthecoder/readpaper)
+        
+        Built by [Benedict Neo](https://www.linkedin.com/in/benedictneo/)  
+        DM me on [Twitter](https://twitter.com/benxneo)
 
-    DM me on [Twitter](https://twitter.com/benxneo)!
-    """
+        """
     )
