@@ -2,17 +2,15 @@ class ResearchPrompts:
     @staticmethod
     def get_system_context():
         return """You are a senior research scientist specializing in analyzing technical papers, including both text and visual content. Your role is to:
-1. Ground all analysis in specific quotes and visual references from the paper using > blockquotes for text
+1. Ground all analysis in specific quotes and visual references from the paper
 2. Maintain rigorous academic standards while making complex concepts accessible
-3. Provide balanced critical analysis identifying both strengths and limitations
-4. Structure analysis to serve both researchers and practitioners
-5. Analyze figures, tables, and diagrams to extract key insights
+3. Structure analysis to serve both researchers and practitioners
+4. Analyze figures, tables, and diagrams to extract key insights
 
 Format requirements:
 - Use > for paper quotes with page/section references
 - Reference figures using italics with page numbers (e.g., *Figure 1, p.3*)
 - Use ### for section headers
-- Use tables with | for structured comparisons
 - Use bullet points for lists
 - Start directly with analysis - no introductory text
 - Define all technical terms and acronyms on first use"""
@@ -20,103 +18,68 @@ Format requirements:
     @staticmethod
     def get_prompt(section):
         prompts = {
-            "overview": """### Core Problem Statement
-First, identify and quote key passages and relevant figures that define:
-1. The problem being addressed
-2. Current limitations
-3. Proposed solution
-> [Include 2-3 relevant quotes with section references]
-*Reference key diagrams/figures that illustrate the problem with page numbers*
+            "overview": """### Problem Context
+Identify the core problem and motivation:
+1. What real-world challenge is being addressed?
+2. Why is this problem significant?
+> [Quote key problem statements]
 
-Analysis:
-- Current challenges and their significance
-- Limitations of existing approaches
-- Real-world implications
-- Technical constraints
+### Proposed Solution
+High-level description of the approach:
+1. What is the main idea?
+2. How does it address the problem?
+*Reference key conceptual figures*
 
-### Key Innovation
-Quote passages and reference figures describing:
-1. Main technical contributions
-2. Novel aspects
-3. Implementation approach
-> [Include relevant technical quotes]
-*Reference architecture diagrams or methodology figures with page numbers*
-
-Analysis:
-- Technical novelty
-- Implementation advantages
-- Performance improvements
-- Resource requirements
-
-### High-Level Results
-Results | Supporting Evidence | Impact
----|---|---
-[List 2-3 key results with supporting quotes and figure references]""",
-            "technical": """### Architecture Details
-Quote key technical specifications and reference relevant diagrams:
-1. System architecture
-2. Algorithm design
-3. Implementation details
-> [Include relevant technical quotes]
-*Reference and analyze system diagrams with page numbers*
-
-Analysis:
-- Component interactions
-- Design decisions and rationale
-- Optimization methods
-- Resource requirements
+### Key Findings
+List only the top 2-3 results that demonstrate solution effectiveness:
+Results | Impact
+---|---
+[Key findings with minimal technical detail]""",
+            "technical": """### System Architecture
+Analyze the technical implementation:
+1. Component design
+2. Data flow
+3. Key algorithms
+*Reference and analyze system diagrams*
 
 ### Mathematical Framework
-> [Quote relevant equations and mathematical formulations]
-*Reference and explain key mathematical figures/tables with page numbers*
+Detailed analysis of:
+1. Formal problem definition
+2. Theoretical foundations
+3. Algorithm complexity
+> [Include key equations and proofs]
 
-Key Elements:
-- Training objectives
-- Loss functions
-- Complexity analysis
-- Optimization approach
-
-### Empirical Results
-Dataset | Size | Results | Training Time | Performance
----|---|---|---|---
-[List experimental details with references to figures and tables]
-
-### Implementation Details
-Hardware | Configuration | Performance | Resource Usage
+### Experimental Setup
+Dataset | Hardware | Parameters | Metrics
 ---|---|---|---
-[List implementation specifics with references to results]""",
-            "critique": """### Critical Analysis
-Quote passages and reference figures highlighting:
-1. Main strengths
-2. Key limitations
-3. Performance trade-offs
-> [Include balanced selection of quotes]
-*Reference relevant performance graphs/comparisons with page numbers*
+[Complete experimental details]
 
-### Strengths Assessment
-Strength | Evidence | Validation | Impact
----|---|---|---
-[List 3-4 key strengths with supporting quotes and figure references]
+### Performance Analysis
+Comprehensive results across all metrics:
+1. Quantitative benchmarks
+2. Ablation studies
+3. Statistical significance
+*Reference all results figures/tables*""",
+            "critique": """### Comparative Analysis
+Compare with existing approaches:
+1. Technical advantages
+2. Performance gains
+3. Resource requirements
+> [Include balanced evidence]
 
-### Limitations Analysis
-Limitation | Impact | Evidence | Potential Solutions
----|---|---|---
-[List 3-4 key limitations with evidence]
+### Limitations Assessment
+Limitation | Impact | Mitigation
+---|---|---
+[Analyze core limitations]
+
+### Research Implications
+1. Scientific contributions
+2. Practical applications
+3. Industry impact
 
 ### Future Directions
-Research Direction | Rationale | Current Evidence | Requirements
----|---|---|---
-[List 3-4 promising future directions]
-
-### Final Assessment
-**Key Contributions:**
-- List major advances with evidence
-- Note technical innovations
-- Highlight practical impact
-
-**Open Challenges:**
-- List remaining issues
-- Note resource constraints
-- Identify research gaps""",
+Direction | Rationale | Requirements
+---|---|---
+[Strategic research opportunities]""",
         }
         return prompts.get(section, "")
