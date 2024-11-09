@@ -80,8 +80,10 @@ with st.sidebar:
     ---
     Powered by [Claude 3.5 Sonnet](https://www.anthropic.com/claude)
     
-    [View on GitHub](https://github.com/benthecoder/readpaper) • [Twitter](https://twitter.com/benxneo)
+    [View on GitHub](https://github.com/benthecoder/readpaper)
     
     Built by [Benedict Neo](https://www.linkedin.com/in/benedictneo/)
+
+    DM me on [Twitter](https://twitter.com/benxneo)!
     """
     )
