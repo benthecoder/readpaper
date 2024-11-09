@@ -1,51 +1,54 @@
 # readpaper 🔬
 
-Instantly generate PhD-level research paper summaries powered by Claude 3.5 Sonnet. Built for researchers and practitioners who need deep technical analysis, fast.
+AI-powered research paper summaries that capture technical depth and nuance. Powered by Claude 3.5 Sonnet.
 
-## ✨ Key Features
+## Why readpaper?
 
-- **Intelligent Analysis**: Automatically extracts core problems, innovations, and technical details
-- **Evidence-Based**: Every insight backed by direct paper quotes and references
-- **Technical Depth**: Detailed architecture analysis, mathematical frameworks, and empirical results
-- **Resource-Aware**: Includes implementation requirements and computational trade-offs
-- **PDF Support**: Handles research papers up to 32MB with native PDF processing
+readpaper leverages Claude 3.5's advanced capabilities to deliver comprehensive research paper analysis:
 
-## 🎯 Perfect For
+- 🔍 **Deep PDF Analysis**: Process papers up to 32MB with native PDF support ([1](https://docs.anthropic.com/en/docs/build-with-claude/pdf-support))
+- ⚡ **Performance Optimized**:
+  - Token counting for efficient processing ([2](https://docs.anthropic.com/en/docs/build-with-claude/token-counting))
+  - Prompt caching for faster repeated analyses ([3](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching))
+- 🧠 **Intelligent Processing**:
+  - Multi-stage sectional analysis for thorough understanding
+  - Progressive context building across sections
+  - Research scientist persona for academic-quality insights
+  - Token-optimized prompts for maximum context utilization
 
-- 📚 Academic Researchers
-- 💻 ML Engineers
-- 🔧 Industry Practitioners
-- 📊 Research Teams
+### How it Works
 
-## 🚀 Why This Matters
+1. **Sectional Analysis**: Papers are processed in three key stages:
 
-Traditional paper analysis is time-consuming and can miss critical details. This tool:
+   - Initial overview and context gathering
+   - Detailed technical analysis
+   - Synthesis and implications
 
-- Cuts analysis time from hours to minutes
-- Ensures consistent, structured evaluation
-- Captures both high-level insights and technical nuances
-- Generates publication-ready summaries
+2. **Progressive Understanding**: Each analysis stage builds upon previous insights, creating a coherent and deep understanding of the paper
 
-## 📊 Output Format
+3. **Research Scientist Approach**: A specialized research persona guides the analysis style, ensuring academic rigor and technical depth
 
-- Core Problem Analysis
-- Technical Framework
-- Implementation Details
-- Empirical Results
-- Future Research Directions
+4. **Optimized Processing**:
+   - Efficient PDF handling with Claude's beta capabilities
+   - Smart caching for faster repeated analyses
+   - Token usage monitoring for optimal context management
 
-## 🛠️ Built With
+## Who is this for?
 
-- Claude 3.5 Sonnet (Latest API)
-- PDF Processing Beta Features
-- Prompt Caching for Efficiency
-- Markdown-based Output
+- 📚 Researchers staying current with literature
+- 💻 Engineers implementing papers
+- 🔧 Teams doing literature reviews
+- 📊 Anyone needing deep technical understanding
+
+## Sample Output
+
+Check out [`sample_summary/attention.pdf`](sample_summary/attention.pdf) for an example of the generated analysis format.
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Python 3.8+
+- Python 3.10+
 - uv (recommended) or pip
 
 ### Installation
@@ -98,28 +101,3 @@ python main.py path/to/your/paper.pdf
 ```
 
 The summary will be saved in `paper_summaries/` directory.
-
-### Sample Output
-
-Check out [`sample_summary/attention.pdf`](sample_summary/attention.pdf) for an example of the generated analysis format.
-
-## 📝 Output Structure
-
-Each summary includes:
-
-1. Core Problem Analysis
-
-   - Problem statement
-   - Current limitations
-   - Proposed solution
-
-2. Technical Framework
-
-   - Architecture details
-   - Mathematical foundations
-   - Implementation specifics
-
-3. Critical Evaluation
-   - Empirical results
-   - Strengths and limitations
-   - Future research directions
