@@ -9,18 +9,22 @@ st.set_page_config(page_title="readpaper", page_icon="📄")
 
 st.title("readpaper")
 
+# Initialize session state for storing the summary and current file name
+if "summary" not in st.session_state:
+    st.session_state.summary = None
+if "current_file_name" not in st.session_state:
+    st.session_state.current_file_name = None
+
 # File uploader
 uploaded_file = st.file_uploader("Upload your research paper (PDF)", type="pdf")
 
-# Initialize session state for storing the summary
-if "summary" not in st.session_state:
-    st.session_state.summary = None
-
-# File uploader and field input remain the same ...
-
 if uploaded_file:
-    # Only analyze if we don't already have a summary
-    if st.session_state.summary is None:
+    # Check if a new file was uploaded
+    if st.session_state.current_file_name != uploaded_file.name:
+        st.session_state.summary = None  # Reset summary for new file
+        st.session_state.current_file_name = (
+            uploaded_file.name
+        )  # Update current file name
         with st.spinner("Analyzing paper... this takes about a minute"):
             try:
                 # Save uploaded file temporarily
