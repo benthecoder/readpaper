@@ -60,30 +60,24 @@ else:
         "Please upload a PDF file and specify the research field to begin analysis."
     )
 
-# Add sidebar with information
 with st.sidebar:
     st.header("ReadPaper 📚")
     st.markdown(
         """
-    An AI-powered research paper analyzer that generates comprehensive summaries using 
-    a structured academic approach. The analysis includes:
+    AI-powered research paper analyzer that generates comprehensive summaries.
     
-    ### Analysis Structure
-    - Core Problem Statement
-    - Key Innovation
-    - Technical Framework
-    - Empirical Validation
-    - Implementation Details
-    
-    ### Features
-    - Quote-based analysis
-    - Critical evaluation
-    - Technical deep dives
-    - Balanced assessment
+    ### Summary Structure
+    - Problem Statement & Significance
+    - Conceptual Innovation
+    - Technical Architecture
+    - Mathematical Foundation
+    - Critical Analysis & Future Work
     
     ---
+    Powered by [Claude 3.5 Sonnet](https://www.anthropic.com/claude)
+    
+    [View on GitHub](https://github.com/benthecoder/readpaper) • [Twitter](https://twitter.com/benxneo)
+    
     Built by [Benedict Neo](https://www.linkedin.com/in/benedictneo/)
-
-    DM me on [Twitter](https://twitter.com/benxneo) for feedback!
     """
     )
