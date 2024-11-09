@@ -1,85 +1,73 @@
 class ResearchPrompts:
     @staticmethod
     def get_system_context():
-        return """You are a senior research scientist specializing in analyzing technical papers, including both text and visual content. Your role is to:
-1. Ground all analysis in specific quotes and visual references from the paper
-2. Maintain rigorous academic standards while making complex concepts accessible
-3. Structure analysis to serve both researchers and practitioners
-4. Analyze figures, tables, and diagrams to extract key insights
+        return """You are a senior research scientist specializing in analyzing technical papers. Your role is to:
+    1. Build upon previous section analyses when provided
+    2. Provide distinct, non-overlapping analysis for each section
+    3. Ground all analysis in specific quotes and visual references
+    4. Maintain academic rigor while ensuring accessibility
+    5. Focus each section on its core purpose without repetition
+    6. Reference relevant insights from previous sections when applicable
 
-Format requirements:
-- Use > for paper quotes with page/section references
-- Reference figures using italics with page numbers (e.g., *Figure 1, p.3*)
-- Use ### for section headers
-- Use bullet points for lists
-- Start directly with analysis - no introductory text
-- Define all technical terms and acronyms on first use"""
+    Format requirements:
+    - Use > for paper quotes with page/section references
+    - Reference figures using italics with page numbers (e.g., *Figure 1, p.3*)
+    - Use ### for section headers
+    - Use bullet points for lists
+    - Define technical terms on first use only
+    - When referencing previous sections, use [Previous Section: insight] format"""
 
     @staticmethod
     def get_prompt(section):
         prompts = {
-            "overview": """### Problem Context
-Identify the core problem and motivation:
-1. What real-world challenge is being addressed?
-2. Why is this problem significant?
-> [Quote key problem statements]
+            "overview": """Analyze the paper's core contributions and significance. If this is the first section, focus on establishing a foundation for later sections.
 
-### Proposed Solution
-High-level description of the approach:
-1. What is the main idea?
-2. How does it address the problem?
-*Reference key conceptual figures*
+### Problem Statement
+- Core challenge being addressed
+- Significance and impact
+> [Quote defining problem statement]
 
-### Key Findings
-List only the top 2-3 results that demonstrate solution effectiveness:
-Results | Impact
----|---
-[Key findings with minimal technical detail]""",
-            "technical": """### System Architecture
-Analyze the technical implementation:
-1. Component design
-2. Data flow
-3. Key algorithms
-*Reference and analyze system diagrams*
+### Conceptual Innovation
+- Novel approach overview
+- Key differentiators
+*Reference main concept figure*
 
-### Mathematical Framework
-Detailed analysis of:
-1. Formal problem definition
-2. Theoretical foundations
-3. Algorithm complexity
-> [Include key equations and proofs]
-
-### Experimental Setup
-Dataset | Hardware | Parameters | Metrics
----|---|---|---
-[Complete experimental details]
-
-### Performance Analysis
-Comprehensive results across all metrics:
-1. Quantitative benchmarks
-2. Ablation studies
-3. Statistical significance
-*Reference all results figures/tables*""",
-            "critique": """### Comparative Analysis
-Compare with existing approaches:
-1. Technical advantages
-2. Performance gains
-3. Resource requirements
-> [Include balanced evidence]
-
-### Limitations Assessment
-Limitation | Impact | Mitigation
+### High-Level Results
+Impact | Improvement | Significance
 ---|---|---
-[Analyze core limitations]
+[Key quantitative improvements]""",
+            "technical": """Building on the overview section's foundation, provide a detailed technical analysis. Reference specific aspects mentioned in the overview where relevant.
 
-### Research Implications
-1. Scientific contributions
-2. Practical applications
-3. Industry impact
+### Technical Architecture
+- System components and interactions [Reference overview's conceptual model]
+- Data flow pipeline
+*Reference architecture diagrams*
 
-### Future Directions
-Direction | Rationale | Requirements
+### Mathematical Foundation
+- Core algorithms supporting the innovations described in overview
+- Theoretical proofs
+- Complexity analysis
+> [Include key equations]
+
+### Implementation Details
+Dataset | Method | Metrics
 ---|---|---
-[Strategic research opportunities]""",
+[Technical specifications aligned with overview results]""",
+            "critique": """Using insights from both the overview and technical sections, provide a comprehensive critique.
+
+### Critical Analysis
+Strength [from previous sections] | Limitation | Future Work
+---|---|---
+[Balanced evaluation referencing previous sections]
+
+### Research Impact
+- Scientific contributions [tied to overview's significance]
+- Industry applications [based on technical feasibility]
+- Open challenges [considering technical limitations]
+
+### Future Research
+Direction | Motivation [from previous analysis] | Requirements
+---|---|---
+[Research opportunities building on full context]""",
         }
         return prompts.get(section, "")

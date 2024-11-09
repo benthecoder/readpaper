@@ -139,6 +139,7 @@ class Sumrize:
 
         sections = ["overview", "technical", "critique"]
         summary_parts = []
+        previous_summaries = ""
 
         # Create progress bar
         pbar = tqdm(sections, desc="Generating summary", unit="section")
@@ -146,9 +147,19 @@ class Sumrize:
         for section in pbar:
             pbar.set_description(f"Processing {section}")
             try:
-                section_summary = self.summarize_section(pdf_base64, section)
+                # Add previous summaries as context
+                section_prompt = ResearchPrompts.get_prompt(section)
+                if previous_summaries:
+                    section_prompt = f"""Previous section summaries:
+    {previous_summaries}
+
+    Using the context above, {section_prompt}"""
+
+                section_summary = self.summarize_section(pdf_base64, section_prompt)
                 if section_summary:
                     summary_parts.append(section_summary)
+                    # Update context for next section
+                    previous_summaries += f"\n\n{section}: {section_summary}"
                 else:
                     logger.warning(f"Empty summary for section: {section}")
             except Exception as e:
