@@ -5,9 +5,9 @@ from main import Sumrize
 from utils import create_markdown_pdf
 
 
-st.set_page_config(page_title="Research Paper Analyzer", page_icon="📚")
+st.set_page_config(page_title="readpaper", page_icon="📄")
 
-st.title("Research Paper Analyzer")
+st.title("readpaper")
 
 # File uploader
 uploaded_file = st.file_uploader("Upload your research paper (PDF)", type="pdf")
